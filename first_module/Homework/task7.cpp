@@ -8,7 +8,7 @@
 
 
 template<class T, class TGetKey>
-void CountingSort2( T* arr, int n, TGetKey getKey) {
+void CountingSort( T* arr, int n, TGetKey getKey) {
     int max = getKey(arr[0]);
 
     for (int i = 1; i < n; ++i){
@@ -49,7 +49,7 @@ int main(){
         arr[i] = data;
     }
     for (int i = 0; i < 8; ++i) {
-        CountingSort2(arr, count, [i](unsigned long long val) { return (val >> i * 8) & 255; });
+        CountingSort(arr, count, [i](unsigned long long val) { return (val >> i * 8) & 255; });
     }
     for (int i = 0; i < count; ++i){
         std::cout << arr[i] << " " ;
