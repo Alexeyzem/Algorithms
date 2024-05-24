@@ -96,12 +96,7 @@ int Deikstra(IGraph& graph, int from, int to){
                 distance[v.pos] = distance[u.pos] + v.distance;
                 queue.insert({v.pos, distance[v.pos]});
             } else if(distance[v.pos] > distance[u.pos] + v.distance){
-                for (auto i = queue.begin(); i != queue.end(); ++i){
-                    if (i->pos == v.pos){
-                        queue.erase(i);
-                        break;
-                    }
-                }
+                queue.erase({v.pos, distance[v.pos]});
                 distance[v.pos] = distance[u.pos] + v.distance;
                 queue.insert({v.pos, distance[v.pos]});
             }
@@ -120,8 +115,8 @@ int main(){
         graph.AddEdge(from, to, price);
         graph.AddEdge(to, from, price);
     }
-    int from, to;
-    std:: cin >> from >> to;
-    std::cout << Deikstra(graph, from, to);
+    int start, to;
+    std:: cin >> start >> to;
+    std::cout << Deikstra(graph, start, to);
     return 0;
 }
