@@ -96,7 +96,7 @@ int Deikstra(IGraph& graph, int from, int to){
                 distance[v.pos] = distance[u.pos] + v.distance;
                 queue.insert({v.pos, distance[v.pos]});
             } else if(distance[v.pos] > distance[u.pos] + v.distance){
-                queue.erase({v.pos, distance[v.pos]});
+                queue.erase(queue.find({v.pos, distance[v.pos]}));
                 distance[v.pos] = distance[u.pos] + v.distance;
                 queue.insert({v.pos, distance[v.pos]});
             }
